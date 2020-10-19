@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include <algorithm>
 #include <cstdlib>
 
 #define MAX(a, b) ((a) > (b) ? (1) : (0))
@@ -71,6 +72,8 @@ int solucao_divisao_e_conquista(std::vector<int> &vec)
 	std::vector<int> vetor_auxiliar;
 	std::vector<int>::size_type unitario = 1;
 
+	std::sort(vec.begin(), vec.end(), std::greater <>());
+
 	while (true)
 	{
 		for (std::vector<int>::size_type j = 1; j < vec.size(); ++j)
@@ -91,10 +94,15 @@ int solucao_divisao_e_conquista(std::vector<int> &vec)
 		std::vector<int>::iterator it_1 = vec.begin();
 		std::vector<int>::iterator it_2 = vec.begin() + std::get<1>(menor_peso_indice_atual);
 
+		imprime_vetor(vec);
+
 		vec.erase(it_1);
 		vec.erase(it_2);
 
+		imprime_vetor(vec);
+
 		vec.push_back(std::get<0>(menor_peso_indice_atual));
+		std::sort(vec.begin(), vec.end(), std::greater <>());
 
 		if (vec.size() == unitario)
 		{
