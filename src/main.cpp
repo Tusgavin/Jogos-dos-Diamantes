@@ -3,8 +3,7 @@
 #include <utility>
 #include <algorithm>
 #include <cstdlib>
-
-#define MAX(a, b) ((a) > (b) ? (1) : (0))
+#include <chrono>
 
 bool checar_igualdade_de_inteiros(int a, int b)
 {
@@ -133,7 +132,11 @@ int main(int argc, char *argv[])
 		pesos_dos_diamantes.push_back(peso_de_um_diamante);
 	}
 
-	std::cout << "Peso final: " << solucao_divisao_e_conquista(pesos_dos_diamantes) << std::endl;
+	auto start_algorithm_1 = std::chrono::steady_clock::now();
+	std::cout << solucao_divisao_e_conquista(pesos_dos_diamantes) << std::endl;
+	auto end_algorithm_1 = std::chrono::steady_clock::now();
+	auto diff = end_algorithm_1 - start_algorithm_1;
+	std::cout << std::chrono::duration <double, std::milli>(diff).count() << std::endl;
 
 
 	return 0;
