@@ -2,18 +2,6 @@
 #include <vector>
 #include <chrono>
 
-bool checar_igualdade_de_inteiros(int a, int b)
-{
-	if (a == b) 
-	{
-		return true;
-	}
-	else 
-	{
-		return false;
-	}
-}
-
 int soma_total_em_vetor(std::vector<int> &vec)
 {
 	int soma_total = 0;
@@ -43,6 +31,32 @@ int maximo_dois_inteiros(int a, int b)
 	}
 }
 
+int solucao_programacao_nao_dinamica(std::vector<int> &vec, int quantidade_diamantes, int soma_desejada)
+{
+	if (quantidade_diamantes == 0 || soma_desejada == 0)
+	{
+		return 0;
+	}
+
+	if (vec.at(quantidade_diamantes - 1) > soma_desejada)
+	{
+		return solucao_programacao_nao_dinamica(vec, quantidade_diamantes - 1, soma_desejada);
+	}
+	else 
+	{
+		int aux = vec.at(quantidade_diamantes - 1) + solucao_programacao_nao_dinamica(
+			vec,
+			quantidade_diamantes -1,
+			soma_desejada - vec.at(quantidade_diamantes - 1)
+		);
+		return maximo_dois_inteiros(aux, solucao_programacao_nao_dinamica(
+			vec,
+			quantidade_diamantes - 1,
+			soma_desejada
+		));
+	}
+}
+
 int solucao_programacao_dinamica(std::vector<int> &vec, int quantidade_diamantes)
 {
 	int soma_total_de_pesos = soma_total_em_vetor(vec);
@@ -60,10 +74,7 @@ int solucao_programacao_dinamica(std::vector<int> &vec, int quantidade_diamantes
 		}
 	}
 
-	/*
-	Iteramos sobre cada peso de pedra "i" armazenado em vec e sobre cada peso "p" de 1 até soma_total/2,
-	e tentamos achar o maior peso formados pelas pedras até "i" que chega proximo ou igual a "p".
-	*/
+	
 	for (int i = 1; i < tamanho_x; ++i)
 	{
 		for (int j = 1; j < tamanho_y; ++j)
@@ -113,8 +124,18 @@ int main(int argc, char *argv[])
 		pesos_dos_diamantes_2.push_back(peso_de_um_diamante);
 	}
 
+	int soma_desejada = soma_total_em_vetor(pesos_dos_diamantes_2);
+/*
+	auto start_algorithm_1 = std::chrono::steady_clock::now();
+	std::cout << solucao_programacao_dinamica(pesos_dos_diamantes_1, quantidade_diamantes) << std::endl;
+	auto end_algorithm_1 = std::chrono::steady_clock::now();
+	auto diff_1 = end_algorithm_1 - start_algorithm_1;
+	std::cout << std::chrono::duration <double, std::milli>(diff_1).count() << std::endl;
+*/
+
 	auto start_algorithm_2 = std::chrono::steady_clock::now();
-	std::cout << solucao_programacao_dinamica(pesos_dos_diamantes_2, quantidade_diamantes) << std::endl;
+	int resultado = soma_desejada - solucao_programacao_nao_dinamica(pesos_dos_diamantes_2, quantidade_diamantes, soma_desejada);
+	std::cout << resultado << std::endl;
 	auto end_algorithm_2 = std::chrono::steady_clock::now();
 	auto diff_2 = end_algorithm_2 - start_algorithm_2;
 	std::cout << std::chrono::duration <double, std::milli>(diff_2).count() << std::endl;
