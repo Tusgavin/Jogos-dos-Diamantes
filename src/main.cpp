@@ -126,23 +126,25 @@ int main(int argc, char *argv[])
 		pesos_dos_diamantes_2.push_back(peso_de_um_diamante);
 	}
 
-	int soma_total = soma_total_em_vetor(pesos_dos_diamantes_2);
-	int soma_desejada = ((soma_total / 2));
-
-/*
+	// ----- ALGORITMO DINAMICO
 	auto start_algorithm_1 = std::chrono::steady_clock::now();
 	std::cout << solucao_programacao_dinamica(pesos_dos_diamantes_1, quantidade_diamantes) << std::endl;
 	auto end_algorithm_1 = std::chrono::steady_clock::now();
 	auto diff_1 = end_algorithm_1 - start_algorithm_1;
 	std::cout << std::chrono::duration <double, std::milli>(diff_1).count() << std::endl;
-*/
+
+/*
+	// ----- DIVISAO E CONQUISTA
+	int soma_total = soma_total_em_vetor(pesos_dos_diamantes_2);
+	int soma_desejada = ((soma_total / 2));
 
 	auto start_algorithm_2 = std::chrono::steady_clock::now();
-	int resultado = soma_total - 2*solucao_programacao_nao_dinamica(pesos_dos_diamantes_2, quantidade_diamantes, soma_desejada);
+	int resultado = soma_total - (2 * solucao_programacao_nao_dinamica(pesos_dos_diamantes_2, quantidade_diamantes, soma_desejada));
 	std::cout << resultado << std::endl;
 	auto end_algorithm_2 = std::chrono::steady_clock::now();
 	auto diff_2 = end_algorithm_2 - start_algorithm_2;
 	std::cout << std::chrono::duration <double, std::milli>(diff_2).count() << std::endl;
-
+*/
+	
 	return 0;
 }

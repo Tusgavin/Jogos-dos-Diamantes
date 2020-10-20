@@ -3,8 +3,8 @@ CFLAGS:=-std=c++14 -Wall
 
 BUILD_DIR:=./build
 
-EXEC:=./tp1
-TARGET:=tp1
+EXEC:=./tp2
+TARGET:=tp2
 
 $(EXEC): ${BUILD_DIR}/${TARGET}
 
