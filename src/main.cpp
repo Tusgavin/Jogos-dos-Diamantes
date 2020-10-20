@@ -31,7 +31,7 @@ int maximo_dois_inteiros(int a, int b)
 		return b;
 	}
 }
-
+/*
 int solucao_programacao_nao_dinamica(std::vector<int> &vec, int quantidade_diamantes, int soma_desejada)
 {
 
@@ -58,7 +58,7 @@ int solucao_programacao_nao_dinamica(std::vector<int> &vec, int quantidade_diama
 		));
 	}
 }
-
+*/
 int solucao_programacao_dinamica(std::vector<int> &vec, int quantidade_diamantes)
 {
 	int soma_total_de_pesos = soma_total_em_vetor(vec);
@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
 	std::cout << std::chrono::duration <double, std::milli>(diff_1).count() << std::endl;
 
 /*
-	// ----- DIVISAO E CONQUISTA
+	// ----- ALGORITMO NAO DINAMICO
 	int soma_total = soma_total_em_vetor(pesos_dos_diamantes_2);
 	int soma_desejada = ((soma_total / 2));
 
