@@ -113,7 +113,7 @@ int main(int argc, char *argv[])
 {
 	int quantidade_diamantes;
 	std::vector<int> pesos_dos_diamantes_1;
-	std::vector<int> pesos_dos_diamantes_2;
+	//std::vector<int> pesos_dos_diamantes_2;
 
 	std::cin >> quantidade_diamantes;
 
@@ -123,7 +123,7 @@ int main(int argc, char *argv[])
 	{
 		std::cin >> peso_de_um_diamante;
 		pesos_dos_diamantes_1.push_back(peso_de_um_diamante);
-		pesos_dos_diamantes_2.push_back(peso_de_um_diamante);
+		//pesos_dos_diamantes_2.push_back(peso_de_um_diamante);
 	}
 
 	// ----- ALGORITMO DINAMICO
